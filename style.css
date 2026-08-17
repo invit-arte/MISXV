@@ -335,13 +335,13 @@ body::before {
   height: 100vh;
   min-height: 100vh;
   overflow: hidden;
-  background: #ffffff;
+  background: #000;
 }
 
 .hero-cover {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   display: block;
 }
@@ -1855,4 +1855,326 @@ body::before {
 
 .rsvp-simple .modal-send-btn {
   margin-top: 12px;
+}
+/* =====================================================
+   NUEVA APERTURA DE INVITACIÓN
+   ===================================================== */
+
+
+/* -----------------------------------------
+   PANTALLA INICIAL
+   ----------------------------------------- */
+
+.envelope-screen {
+
+  position: fixed;
+
+  inset: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  z-index: 9999;
+
+  background: #000;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+
+  opacity: 1;
+
+  visibility: visible;
+
+  transform: scale(1);
+
+  filter: blur(0);
+
+  transition:
+    opacity 1.2s ease,
+    transform 1.2s ease,
+    filter 1.2s ease,
+    visibility 1.2s ease;
+
+}
+
+
+/* -----------------------------------------
+   IMAGEN DE PORTADA INICIAL
+   ----------------------------------------- */
+
+.initial-cover {
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  display: block;
+
+  z-index: 1;
+
+}
+
+
+/* -----------------------------------------
+   DATOS DE LA FAMILIA
+   ----------------------------------------- */
+
+.guest-info {
+
+  position: absolute;
+
+  left: 50%;
+
+  bottom: 15%;
+
+  transform: translateX(-50%);
+
+  width: 90%;
+
+  text-align: center;
+
+  z-index: 4;
+
+  color: #ffffff;
+
+  pointer-events: none;
+
+  text-shadow:
+    0 2px 8px rgba(0,0,0,.65),
+    0 0 15px rgba(255,255,255,.35);
+
+}
+
+
+.guest-family {
+
+  margin: 0 0 5px;
+
+  font-family: 'Cormorant Garamond', serif;
+
+  font-size: 25px;
+
+  letter-spacing: 2px;
+
+}
+
+
+.guest-passes {
+
+  margin: 0;
+
+  font-family: 'Cormorant Garamond', serif;
+
+  font-size: 17px;
+
+  letter-spacing: 2px;
+
+}
+
+
+/* -----------------------------------------
+   BOTÓN INVISIBLE
+   ----------------------------------------- */
+
+.invisible-open-button {
+
+  position: absolute;
+
+  left: 50%;
+
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 220px;
+
+  height: 220px;
+
+  border: none;
+
+  background: transparent;
+
+  padding: 0;
+
+  margin: 0;
+
+  cursor: pointer;
+
+  z-index: 10;
+
+  outline: none;
+
+  -webkit-tap-highlight-color: transparent;
+
+}
+
+
+/* -----------------------------------------
+   VIDEO DE INTRODUCCIÓN
+   ----------------------------------------- */
+
+.intro-video {
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  display: block;
+
+  z-index: 8;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition:
+    opacity .6s ease;
+
+}
+
+
+.intro-video.show {
+
+  opacity: 1;
+
+  visibility: visible;
+
+}
+
+
+/* -----------------------------------------
+   DESAPARICIÓN DE LA PORTADA
+   ----------------------------------------- */
+
+.envelope-screen.hide {
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  filter: blur(12px);
+
+  transform: scale(1.06);
+
+  pointer-events: none;
+
+}
+
+
+/* -----------------------------------------
+   DESTELLO FINAL
+   ----------------------------------------- */
+
+.magic-flash {
+
+  position: fixed;
+
+  inset: 0;
+
+  background: #ffffff;
+
+  opacity: 0;
+
+  z-index: 10000;
+
+  pointer-events: none;
+
+}
+
+
+.magic-flash.active {
+
+  animation: magicFlash .55s ease forwards;
+
+}
+
+
+/* -----------------------------------------
+   PANTALLA PRINCIPAL
+   ----------------------------------------- */
+
+.main-page {
+
+  opacity: 0;
+
+  transform: translateY(25px);
+
+  transition:
+    opacity 1.1s ease,
+    transform 1.1s ease;
+
+}
+
+
+.main-page.show {
+
+  opacity: 1;
+
+  transform: translateY(0);
+
+}
+
+
+/* -----------------------------------------
+   RESPONSIVE
+   ----------------------------------------- */
+
+@media (max-width: 480px) {
+
+  .invisible-open-button {
+
+    width: 200px;
+
+    height: 200px;
+
+  }
+
+
+  .guest-info {
+
+    bottom: 13%;
+
+  }
+
+
+  .guest-family {
+
+    font-size: 23px;
+
+  }
+
+
+  .guest-passes {
+
+    font-size: 16px;
+
+  }
+
+}
+.intro-video.intro-ending {
+  opacity: 0;
+  transform: scale(1.03);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
 }
