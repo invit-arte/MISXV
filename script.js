@@ -1,116 +1,336 @@
-const sealButton = document.getElementById("sealButton");
+/* =====================================================
+   APERTURA DE LA INVITACIÓN
+   ===================================================== */
+
 const envelopeScreen = document.getElementById("envelopeScreen");
 const mainPage = document.getElementById("mainPage");
 const magicFlash = document.getElementById("magicFlash");
 
-let opened = false;
-let invitadoActual = null;
+const openInvitation = document.getElementById("openInvitation");
+const introVideo = document.getElementById("introVideo");
 
-sealButton.addEventListener("click", () => {
+const bgMusic = document.getElementById("bgMusic");
+
+let opened = false;
+
+
+/* =====================================================
+   DATOS DE LA INVITACIÓN
+   ===================================================== */
+
+const NOMBRE_FAMILIA = "Familia López";
+const CANTIDAD_PERSONAS = 4;
+
+
+/* Mostrar datos en la portada */
+
+document.getElementById("guestFamily").textContent =
+  NOMBRE_FAMILIA;
+
+document.getElementById("guestPasses").textContent =
+  `${CANTIDAD_PERSONAS} personas`;
+
+
+/* =====================================================
+   TOCAR LA PORTADA
+   ===================================================== */
+
+openInvitation.addEventListener("click", async () => {
+
   if (opened) return;
+
   opened = true;
 
-  sealButton.classList.add("opening");
+  /* ---------------------------------
+     1. INICIAR MÚSICA
+     --------------------------------- */
+
+  bgMusic.volume = 1;
+
+  try {
+    await bgMusic.play();
+  } catch (error) {
+    console.log("No se pudo iniciar la música:", error);
+  }
+
+
+  /* ---------------------------------
+     2. BRILLITOS
+     --------------------------------- */
 
   createMagicParticles();
 
-  setTimeout(() => {
-    magicFlash.classList.add("active");
-  }, 900);
 
- setTimeout(() => {
-  envelopeScreen.classList.add("hide");
-  mainPage.classList.add("show");
-}, 1250);
+  /* ---------------------------------
+     3. REPRODUCIR VIDEO
+     --------------------------------- */
 
-  setTimeout(() => {
-    envelopeScreen.style.display = "none";
-    document.body.style.overflow = "auto";
-  }, 2600);
+  introVideo.currentTime = 0;
+
+  try {
+    await introVideo.play();
+  } catch (error) {
+    console.log("No se pudo reproducir el video:", error);
+  }
+
+
+  /* ---------------------------------
+     4. MOSTRAR VIDEO
+     --------------------------------- */
+
+  introVideo.classList.add("show");
+
+
+  /* ---------------------------------
+     5. CUANDO TERMINE EL VIDEO
+     --------------------------------- */
+
+  introVideo.addEventListener("ended", terminarIntro, {
+    once: true
+  });
+
 });
 
-function createMagicParticles() {
-  createStars();
-  createMagicDust();
+
+function terminarIntro() {
+
+  // Partículas finales
+  createMagicParticles();
+
+  // Pequeño destello
+  setTimeout(() => {
+    magicFlash.classList.add("active");
+  }, 150);
+
+  // DESAPARECE LA PANTALLA INICIAL
+  setTimeout(() => {
+
+    envelopeScreen.classList.add("hide");
+
+  }, 250);
+
+
+  // ESPERAMOS A QUE TERMINE EL FADE
+  setTimeout(() => {
+
+    mainPage.classList.add("show");
+
+    window.scrollTo(0, 0);
+
+  }, 1400);
+
+
+  // QUITAMOS LA PANTALLA INICIAL
+  setTimeout(() => {
+
+    envelopeScreen.style.display = "none";
+
+    introVideo.pause();
+
+    document.body.style.overflow = "auto";
+
+  }, 1900);
+
 }
 
+
+/* =====================================================
+   PARTÍCULAS
+   ===================================================== */
+
+function createMagicParticles() {
+
+  createStars();
+  createMagicDust();
+
+}
+
+
+/* =====================================================
+   ESTRELLAS
+   ===================================================== */
+
 function createStars() {
+
   const total = 16;
 
   for (let i = 0; i < total; i++) {
+
     const star = document.createElement("span");
+
     star.classList.add("magic-star");
 
-    // Las estrellas nacen exactamente desde el centro del sello
-    // y se dispersan alrededor de él.
     const angle = Math.random() * Math.PI * 2;
-    const distance = Math.random() * 190 + 75;
 
-    const x = Math.cos(angle) * distance;
-    const y = Math.sin(angle) * distance - 35;
+    const distance =
+      Math.random() * 190 + 75;
 
-    const size = Math.random() * 16 + 10;
-    const endSize = Math.random() * 1.25 + 1.15;
-    const rotate = Math.random() * 360;
+    const x =
+      Math.cos(angle) * distance;
 
-    star.style.setProperty("--x", `${x}px`);
-    star.style.setProperty("--y", `${y}px`);
-    star.style.setProperty("--star-size", `${size}px`);
-    star.style.setProperty("--endSize", endSize);
-    star.style.setProperty("--rotate", `${rotate}deg`);
+    const y =
+      Math.sin(angle) * distance - 35;
 
-    star.style.animationDelay = `${Math.random() * .35}s`;
+    const size =
+      Math.random() * 16 + 10;
+
+    const endSize =
+      Math.random() * 1.25 + 1.15;
+
+    const rotate =
+      Math.random() * 360;
+
+
+    star.style.setProperty(
+      "--x",
+      `${x}px`
+    );
+
+    star.style.setProperty(
+      "--y",
+      `${y}px`
+    );
+
+    star.style.setProperty(
+      "--star-size",
+      `${size}px`
+    );
+
+    star.style.setProperty(
+      "--endSize",
+      endSize
+    );
+
+    star.style.setProperty(
+      "--rotate",
+      `${rotate}deg`
+    );
+
+
+    star.style.animationDelay =
+      `${Math.random() * .35}s`;
+
 
     envelopeScreen.appendChild(star);
 
-    setTimeout(() => star.remove(), 2350);
+
+    setTimeout(() => {
+      star.remove();
+    }, 2350);
+
   }
+
 }
 
+
+/* =====================================================
+   POLVITO
+   ===================================================== */
+
 function createMagicDust() {
+
   const total = 18;
 
   for (let i = 0; i < total; i++) {
+
     const dust = document.createElement("span");
+
     dust.classList.add("magic-dust");
 
-    const angle = Math.random() * Math.PI * 2;
-    const distance = Math.random() * 130 + 50;
+    const angle =
+      Math.random() * Math.PI * 2;
 
-    const x = Math.cos(angle) * distance;
-    const y = Math.sin(angle) * distance;
+    const distance =
+      Math.random() * 130 + 50;
 
-    dust.style.setProperty("--x", `${x}px`);
-    dust.style.setProperty("--y", `${y}px`);
-    dust.style.animationDelay = `${Math.random() * .3}s`;
+    const x =
+      Math.cos(angle) * distance;
+
+    const y =
+      Math.sin(angle) * distance;
+
+
+    dust.style.setProperty(
+      "--x",
+      `${x}px`
+    );
+
+    dust.style.setProperty(
+      "--y",
+      `${y}px`
+    );
+
+
+    dust.style.animationDelay =
+      `${Math.random() * .3}s`;
+
 
     envelopeScreen.appendChild(dust);
 
-    setTimeout(() => dust.remove(), 1500);
+
+    setTimeout(() => {
+      dust.remove();
+    }, 1500);
+
   }
+
 }
 
 /*  MUSICA  */
-const musicButton = document.getElementById("musicButton");
-const bgMusic = document.getElementById("bgMusic");
+/* =====================================================
+   MÚSICA
+   ===================================================== */
 
-let isPlaying = false;
+const musicButton =
+  document.getElementById("musicButton");
+
+let isPlaying = true;
+
+
+/* Como la música comienza desde la portada,
+   actualizamos el botón */
+
+musicButton.classList.add("playing");
+
+musicButton.querySelector(".music-icon").textContent = "❚❚";
+
+musicButton.querySelector(".music-text").textContent = "PAUSA";
+
 
 musicButton.addEventListener("click", () => {
+
   if (!isPlaying) {
+
     bgMusic.play();
+
     musicButton.classList.add("playing");
-    musicButton.querySelector(".music-icon").textContent = "❚❚";
-    musicButton.querySelector(".music-text").textContent = "PAUSA";
+
+    musicButton.querySelector(".music-icon").textContent =
+      "❚❚";
+
+    musicButton.querySelector(".music-text").textContent =
+      "PAUSA";
+
     isPlaying = true;
+
   } else {
+
     bgMusic.pause();
+
     musicButton.classList.remove("playing");
-    musicButton.querySelector(".music-icon").textContent = "▶";
-    musicButton.querySelector(".music-text").textContent = "PLAY";
+
+    musicButton.querySelector(".music-icon").textContent =
+      "▶";
+
+    musicButton.querySelector(".music-text").textContent =
+      "PLAY";
+
     isPlaying = false;
+
   }
+
 });
+
 
 const eventDate = new Date("2026-12-18T15:00:00").getTime(); /*CAMBIAR FECHA AAAA-MM-DDTHH:MM:SS */ 
 
@@ -238,4 +458,3 @@ rsvpForm.addEventListener("submit", (e) => {
   cerrarModal();
   window.open(whatsappURL, "_blank");
 });
-
