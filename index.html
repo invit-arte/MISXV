@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mis XV </title>
+  <title>Mis XV ALICE</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -11,19 +11,44 @@
 
 <body>
   <!-- SOBRE INICIAL -->
+<!-- PANTALLA INICIAL -->
 <section class="envelope-screen" id="envelopeScreen">
+
+  <!-- DESTELLO -->
   <div class="magic-flash" id="magicFlash"></div>
 
-  <div class="seal-container">
-  <button class="seal-button" id="sealButton">
-    <span class="seal-glow"></span>
-    <span class="shine"></span>
-    <img src="images/SELLOPLATA.png" alt="Abrir invitación">
-  </button>
-</div>
+  <!-- IMAGEN INICIAL -->
+  <img
+    src="images/PORTADAPLATAVIDEO.jpg"
+    class="initial-cover"
+    alt="Abrir invitación"
+  >
 
-  <p class="open-text">✨ Toca el sello y deja que la magia comience...</p>
+  <!-- DATOS DEL INVITADO -->
+  <div class="guest-info" id="guestInfo">
+    <p class="guest-family" id="guestFamily">Familia López</p>
+    <p class="guest-passes" id="guestPasses">4 personas</p>
+  </div>
+
+  <!-- BOTÓN INVISIBLE -->
+  <button
+    class="invisible-open-button"
+    id="openInvitation"
+    aria-label="Abrir invitación">
+  </button>
+
+  <!-- VIDEO DE APERTURA -->
+  <video
+    id="introVideo"
+    class="intro-video"
+    playsinline
+    preload="auto"
+    muted>
+    <source src="images/VIDEOPLATA.mp4" type="video/mp4">
+  </video>
+
 </section>
+
 <!-- PORTADA PRINCIPAL -->
 <main class="main-page" id="mainPage">
 
@@ -34,10 +59,10 @@
     </video>-->
      <img class="hero-cover" src="images/PORTADA.png" alt="Portada de la invitación">
 
-    <div class="scroll-indicator">
+    <!--<div class="scroll-indicator">
       <span>Desliza para ver la invitación</span>
       <div class="arrow-down">⌄</div>
-    </div>
+    </div>-->
   </section>
 
   <!-- HOJA / LIBRO -->
@@ -47,7 +72,7 @@
     <!-- MÚSICA -->
     <div class="chapter music-chapter">
       <audio id="bgMusic" loop>
-        <source src="images/cancion.mp3" type="audio/mpeg">
+        <source src="images/JVKEgoldenhour.mp3" type="audio/mpeg">
       </audio>
 
       <button class="music-button" id="musicButton">
@@ -61,11 +86,11 @@
       <!--<img class="date-decoration" src="images/MARIPOSAS2.png" alt="Decoración">-->
 
       <div class="date-box">
-        <h3>Viernes</h3>
+        <h3>Sábado</h3>
         <div class="date-line"></div>
-        <h2>18</h2>
+        <h2>19</h2>
         <div class="date-line"></div>
-        <h3>Diciembre</h3>
+        <h3>Septiembre</h3>
       </div>
 
       <div class="story-text">
@@ -89,14 +114,14 @@
       <img class="gold-ornament" src="images/SEPARACIONPLATA.png" alt="Adorno">
 
       <h2>Mis padres</h2>
-      <p>Luz María Ramírez Dirzo</p>
+      <p>Yazmín Arguijo Domínguez</p>
       <span>y</span>
-      <p>Israel Aguilar Álvarez</p>
+      <p>Oswaldo Guadalupe Estrada Palacios</p>
 
       <h2>Mis padrinos</h2>
-      <p>Karla Veronica Aguilar Álvarez</p>
+      <p>Estela Domínguez Nuñez</p>
       <span>y</span>
-      <p>Marco Antonio Rodríguez  González</p>
+      <p>Fernando Arguijo Adame (finado)</p>
 
       <img class="gold-ornament bottom" src="images/SEPARACIONPLATA.png" alt="Adorno">
     </div>
@@ -159,12 +184,12 @@
     <div class="place-info">
       <p class="place-kicker">INICIAMOS CON LA</p>
       <h3>Ceremonia Religiosa</h3>
-      <h4>Parroquia de San Felipe Neri y Nuestra Señora del Refugio</h4>
+      <h4>Iglesia de Nuestra Señora del Rosario</h4>
       
-      <p>Av Hacienda de Narvarte 79, Prados del Rosario, Azcapotzalco c.p. 02410</p>
-      <strong>03:00 P.M. HRS</strong>
+      <p>Residencial Hacienda el Rosario,27106, Torreón Coah, México.</p>
+      <strong>06:00 P.M. HRS</strong>
 
-      <a href="https://maps.app.goo.gl/nAnW11qBu7BoUAFR8?g_st=iw" target="_blank" class="location-btn">VER UBICACIÓN</a>
+      <a href="https://www.google.com/maps/place/Iglesia+de+Nuestra+Se%C3%B1ora+del+Rosario/@25.6210923,-103.3929473,748m/data=!3m1!1e3!4m15!1m8!3m7!1s0x868fd10042f4c169:0xf86c97f5d46fb74b!2sIglesia+de+Nuestra+Se%C3%B1ora+del+Rosario!8m2!3d25.6214094!4d-103.3930576!10e5!16s%2Fg%2F11xl4t2nq9!3m5!1s0x868fd10042f4c169:0xf86c97f5d46fb74b!8m2!3d25.6214094!4d-103.3930576!16s%2Fg%2F11xl4t2nq9?entry=ttu&g_ep=EgoyMDI2MDgxMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="location-btn">VER UBICACIÓN</a>
     </div>
   </div>
 
@@ -174,11 +199,9 @@
 
         <div class="place-info">
         <p class="place-kicker">LUGAR DEL EVENTO</p>
-        <h3>Salón</h3>
-        <h4>El águila 
-Sindicato nacional de trabajadores petróleos sección 34 </h4>
-        <p>Calle Priv. Víctor Hernández Covarrubias 25, San Juan Tlihuaca, Azcapotzalco c.p. 02400</p>
-        <strong>20:20 HRS</strong>
+        <h3>Condesa en Salón Viena</h3>
+        <p>San pedro de las colonias de Torreón</p>
+        <strong>9:00 P.M. HRS</strong>
 
         <a href="https://maps.app.goo.gl/LshSkCNE6JJUcL857" target="_blank" class="location-btn">VER UBICACIÓN</a>
         </div>
@@ -194,13 +217,13 @@ Sindicato nacional de trabajadores petróleos sección 34 </h4>
 
       <h2 class="purple-script-title">Itinerario</h2>
 
-      <p class="itinerary-date">18 DE DICIEMBRE DE 2026</p>
+      <p class="itinerary-date">19 DE SEPTIEMBRE DE 2026</p>
 
       <div class="itinerary-item">
         <img src="images/ICONOIGLESIA.png" alt="Ceremonia">
         <div class="itinerary-line"></div>
         <div>
-          <strong>17:17 HRS</strong>
+          <strong>6:00 HRS</strong>
           <p>CEREMONIA<br>RELIGIOSA</p>
         </div>
       </div>
@@ -209,7 +232,7 @@ Sindicato nacional de trabajadores petróleos sección 34 </h4>
         <img src="images/ICONOCOPA.png" alt="Recepción">
         <div class="itinerary-line"></div>
         <div>
-          <strong>20:20 HRS</strong>
+          <strong>9:00 HRS</strong>
           <p>RECEPCIÓN<br>DEL EVENTO</p>
         </div>
       </div>
@@ -272,7 +295,7 @@ Sindicato nacional de trabajadores petróleos sección 34 </h4>
         También puedes etiquetar a nuestra quinceañera en Instagram con su username
       </p>
 
-      <h4>@ashli_aguilr</h4>
+      <h4>@aliceestrada</h4>
 
       <a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.instagram.com%2Fashli_aguilr%3Figsh%3DMW92bWc5N2g4dXgzeA%253D%253D%26fbclid%3DIwZXh0bgNhZW0CMTAAc3J0YwZhcHBfaWQPNTE0NzcxNTY5MjI4MDYxAAEewx_sa0nk_sz8bxeUow9-HEWCjHIWc2BzmcYn1_kO-H9onh8G2V_C-fOGbi4_aem_AUARJS2Po9ADRyJ1M-j0eg&h=AUBDNwh4kw2SZrasb8KwbocVHSDyV-R9hAY2U15vleyOyTXwWgPAmxnwXHQcjD-EHllVZ1HV3NZiLuvEBM3MgsPEjXEGvmW7SG7z1JBkXNaTYVO6CmT8aQPTLlhEoNoc7DsT39qWvhX6pIXR6LTrlA" class="outline-button">ABRIR INSTAGRAM</a>
     </div>
