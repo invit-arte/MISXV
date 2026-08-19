@@ -1288,11 +1288,39 @@ body::before {
   -webkit-backdrop-filter: blur(18px);
 
   border: 1px solid rgba(255,255,255,.65);
-  box-shadow: 0 18px 45px rgba(0,0,0,.22);
+  box-shadow:
+    0 0 8px rgba(255,255,255,.95),
+    0 0 18px rgba(255,255,255,.75),
+    0 0 35px rgba(255,255,255,.55),
+    0 0 60px rgba(255,255,255,.30),
+    0 15px 40px rgba(0,0,0,.15);
   text-align: center;
 
   transform: translateY(25px) scale(.96);
   transition: transform .35s ease;
+}
+.rsvp-modal-content {
+  animation: modalWhiteGlow 2.8s ease-in-out infinite;
+}
+
+@keyframes modalWhiteGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 8px rgba(255,255,255,.85),
+      0 0 18px rgba(255,255,255,.60),
+      0 0 35px rgba(255,255,255,.40),
+      0 0 55px rgba(255,255,255,.20),
+      0 15px 40px rgba(0,0,0,.15);
+  }
+
+  50% {
+    box-shadow:
+      0 0 12px rgba(255,255,255,1),
+      0 0 28px rgba(255,255,255,.90),
+      0 0 50px rgba(255,255,255,.65),
+      0 0 80px rgba(255,255,255,.35),
+      0 15px 40px rgba(0,0,0,.12);
+  }
 }
 
 .rsvp-modal.active .rsvp-modal-content {
@@ -1856,6 +1884,19 @@ body::before {
 .rsvp-simple .modal-send-btn {
   margin-top: 12px;
 }
+.rsvp-simple .rsvp-important {
+  margin-top: 6px;
+  margin-bottom: 18px;
+}
+
+.rsvp-simple .rsvp-important strong {
+  display: block;
+  color: #5a5a5a;
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
 /* =====================================================
    NUEVA APERTURA DE INVITACIÓN
    ===================================================== */
