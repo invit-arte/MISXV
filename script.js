@@ -1,4 +1,4 @@
-//* =====================================================APERTURA DE LA INVITACIÓN ===================================================== */
+/* ========================APERTURA DE LA INVITACIÓN===================================================== */
 
 const envelopeScreen = document.getElementById("envelopeScreen");
 const mainPage = document.getElementById("mainPage");
@@ -13,7 +13,7 @@ let opened = false;
 
 
 /* =====================================================
-   DATOS DE LA INVITACIÓN
+  DATOS DE LA INVITACIÓN
    ===================================================== */
 
 const CANTIDAD_PERSONAS = 2;
@@ -32,7 +32,7 @@ document.getElementById("rsvpGuestPasses").textContent =
 
 
 /* =====================================================
-   TOCAR LA PORTADA
+  TOCAR LA PORTADA
    ===================================================== */
 
 openInvitation.addEventListener("click", async () => {
@@ -332,7 +332,7 @@ musicButton.addEventListener("click", () => {
 });
 
 
-const eventDate = new Date("2026-12-18T15:00:00").getTime(); /*CAMBIAR FECHA AAAA-MM-DDTHH:MM:SS */ 
+const eventDate = new Date("2026-09-19T18:00:00").getTime(); /*CAMBIAR FECHA AAAA-MM-DDTHH:MM:SS */ 
 
 function updateCountdown() {
   const now = new Date().getTime();
@@ -360,7 +360,12 @@ const galleryPhotos = [
   "images/GALERIA2.jpeg",
   "images/GALERIA3.jpeg",
   "images/GALERIA4.jpeg",
-  "images/GALERIA5.jpeg"
+  "images/GALERIA5.jpeg",
+  "images/GALERIA6.jpeg",
+  "images/GALERIA7.jpeg",
+  "images/GALERIA8.jpeg",
+  "images/GALERIA9.jpeg"
+
 ];
 
 const galleryImage = document.getElementById("galleryImage");
