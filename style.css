@@ -731,7 +731,7 @@ body::before {
 .countdown-background {
   position: relative;
   width: 100%;
-  min-height: 260px;
+  min-height: 285px;
   overflow: hidden;
 
   /* NEGRO TRANSPARENTE */
@@ -917,10 +917,80 @@ body::before {
 }
 
 .countdown-phrase {
-  margin-top: 22px;
+  width: 90%;
+  max-width: 360px;
+  margin: 22px auto 0;
+
   font-style: italic;
   font-size: 30px;
+  line-height: 1.15;
+
   color: #ffffff;
+  text-align: center;
+
+  text-shadow: 0 0 12px rgba(255,255,255,.20);
+}
+@media (max-width: 480px) {
+
+  .countdown-phrase {
+    width: 88%;
+    max-width: 330px;
+    font-size: 26px;
+    line-height: 1.2;
+    margin-top: 20px;
+  }
+
+}
+
+/* =========================================
+   AJUSTE FINAL DEL CONTADOR EN CELULAR
+========================================= */
+
+.countdown-background {
+  height: auto !important;
+  min-height: 360px !important;
+  overflow: visible !important;
+  padding-bottom: 30px;
+}
+
+.countdown-content {
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+}
+
+.countdown-phrase {
+  width: 90%;
+  max-width: 360px;
+  margin: 24px auto 0;
+
+  font-size: 27px;
+  line-height: 1.18;
+
+  text-align: center;
+  white-space: normal;
+  overflow: visible;
+  word-wrap: break-word;
+
+  color: #ffffff;
+}
+
+/* En celulares */
+@media (max-width: 480px) {
+
+  .countdown-background {
+    min-height: 390px !important;
+    padding-bottom: 35px;
+  }
+
+  .countdown-phrase {
+    width: 88%;
+    max-width: 330px;
+    font-size: 27px;
+    line-height: 1.2;
+    margin-top: 24px;
+  }
+
 }
 
 /* =========================
@@ -1223,21 +1293,18 @@ body::before {
   color: #ffffff;
 }
 
- .share-photo-text strong {
+.share-photo-text strong {
   display: block;
   margin-top: 6px;
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 3px;
-
-  /* HASHTAG #MISXVALICE — BLANCO */
-  color: #ffffff !important;
+  color: #ffffff; /* Plata */
 
   text-shadow:
-    0 0 2px rgba(255,255,255,.95),
-    0 0 8px rgba(255,255,255,.85),
-    0 0 16px rgba(255,255,255,.35),
-    0 2px 4px rgba(0,0,0,.35);
+      0 0 2px rgba(255,255,255,.95),
+      0 0 8px rgb(255, 255, 255),
+      0 2px 4px rgb(255, 255, 255);
 }
 /*SECCION DONDE TERMINA INSTAGRAM*/
 
@@ -2766,4 +2833,18 @@ body::before {
   .countdown-box {
     max-width: 86%;
   }
+}
+
+
+/* =========================================
+   #MISXVALICE — BLANCO + BRILLO
+   ========================================= */
+
+.share-photo-text strong {
+  color: #ffffff !important;
+  text-shadow:
+    0 0 2px rgba(255,255,255,.95),
+    0 0 8px rgba(255,255,255,.85),
+    0 0 16px rgba(255,255,255,.35),
+    0 2px 4px rgba(0,0,0,.35);
 }
