@@ -1,4 +1,4 @@
-/* =====================================================
+//* =====================================================
    APERTURA DE LA INVITACIÓN
    ===================================================== */
 
@@ -18,16 +18,18 @@ let opened = false;
    DATOS DE LA INVITACIÓN
    ===================================================== */
 
-const NOMBRE_FAMILIA = "Familia López";
-const CANTIDAD_PERSONAS = 4;
+const CANTIDAD_PERSONAS = 2;
 
 
 /* Mostrar datos en la portada */
 
 document.getElementById("guestFamily").textContent =
-  NOMBRE_FAMILIA;
+  "Invitación especial";
 
 document.getElementById("guestPasses").textContent =
+  `Para ${CANTIDAD_PERSONAS} personas`;
+
+document.getElementById("rsvpGuestPasses").textContent =
   `${CANTIDAD_PERSONAS} personas`;
 
 
@@ -356,9 +358,11 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 /* GALERIA DE FOTOS */
 const galleryPhotos = [
-  "images/GALERIA1.png",
-  "images/GALERIA2.png",
-  "images/GALERIA3.png"
+  "images/GALERIA1.jpeg",
+  "images/GALERIA2.jpeg",
+  "images/GALERIA3.jpeg",
+  "images/GALERIA4.jpeg",
+  "images/GALERIA5.jpeg"
 ];
 
 const galleryImage = document.getElementById("galleryImage");
@@ -413,16 +417,16 @@ const closeRsvpModal = document.getElementById("closeRsvpModal");
 const rsvpModal = document.getElementById("rsvpModal");
 const rsvpForm = document.getElementById("rsvpForm");
 const attendance = document.getElementById("attendance");
+const guestNames = document.getElementById("guestNames");
 const mensajeAsistencia = document.getElementById("mensajeAsistencia");
 
-// PERSONALIZA ESTOS DATOS PARA CADA INVITACIÓN
-const NOMBRE_INVITADO = "Familia López";
-const CANTIDAD_PASES = 4;
+// Los datos de cada invitación se configuran arriba.
 
 // Número de WhatsApp que recibirá las confirmaciones
 const whatsappNumber = "5218718963128";
 
 openRsvpModal.addEventListener("click", () => {
+  guestNames.value = "";
   attendance.value = "";
   mensajeAsistencia.textContent = "";
   rsvpModal.classList.add("active");
@@ -441,7 +445,14 @@ rsvpModal.addEventListener("click", (e) => {
 rsvpForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
+  const nombres = guestNames.value.trim();
   const respuesta = attendance.value;
+
+  if (!nombres) {
+    mensajeAsistencia.textContent = "Escribe los nombres de las personas que asistirán.";
+    guestNames.focus();
+    return;
+  }
 
   if (!respuesta) {
     mensajeAsistencia.textContent = "Selecciona una opción para continuar.";
@@ -450,7 +461,7 @@ rsvpForm.addEventListener("submit", (e) => {
 
   mensajeAsistencia.textContent = "";
 
-  const message = `✨ CONFIRMACIÓN DE ASISTENCIA\n\n👤 Invitado: ${NOMBRE_INVITADO}\n🎟️ Pases asignados: ${CANTIDAD_PASES}\n\n✅ Respuesta: ${respuesta}`;
+  const message = `✨ CONFIRMACIÓN DE ASISTENCIA\n\n👤 Nombres: ${nombres}\n🎟️ Invitación para ${CANTIDAD_PERSONAS} personas\n\n✅ Respuesta: ${respuesta}`;
 
   const whatsappURL =
     `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
