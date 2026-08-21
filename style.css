@@ -1223,18 +1223,21 @@ body::before {
   color: #ffffff;
 }
 
-.share-photo-text strong {
+ .share-photo-text strong {
   display: block;
   margin-top: 6px;
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 3px;
-  color: #ffffff; /* Plata */
+
+  /* HASHTAG #MISXVALICE — BLANCO */
+  color: #ffffff !important;
 
   text-shadow:
-      0 0 2px rgba(255,255,255,.95),
-      0 0 8px rgba(255,255,255,.75),
-      0 2px 4px rgba(0,0,0,.35);
+    0 0 2px rgba(255,255,255,.95),
+    0 0 8px rgba(255,255,255,.85),
+    0 0 16px rgba(255,255,255,.35),
+    0 2px 4px rgba(0,0,0,.35);
 }
 /*SECCION DONDE TERMINA INSTAGRAM*/
 
