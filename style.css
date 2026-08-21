@@ -32,7 +32,7 @@ body::before {
   width: 100vw;
   height: 100vh;
 
-  background-image: url("images/FONDO.png");
+  background-image: url("images/FONDO4.png");
 
   background-size: 100% auto;
   background-position: top center;
@@ -724,18 +724,52 @@ body::before {
   padding: 0;
 }
 
+/* =========================================
+   CONTADOR — GLASS NEGRO TRANSPARENTE
+========================================= */
+
 .countdown-background {
   position: relative;
   width: 100%;
   min-height: 260px;
   overflow: hidden;
+
+  /* NEGRO TRANSPARENTE */
+  background:
+    linear-gradient(
+      135deg,
+      rgba(15, 15, 15, 0.295),
+      rgba(45, 45, 45, .30),
+      rgba(10, 10, 10, .48)
+    );
+
+  border: 1px solid rgba(255, 255, 255, .38);
+
+  /* EFECTO VIDRIO */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.25),
+    inset 0 -1px 0 rgba(255,255,255,.08),
+    0 15px 40px rgba(0,0,0,.18);
 }
 
-.countdown-background > img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  display: block;
+.countdown-background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      115deg,
+      transparent 15%,
+      rgba(255,255,255,.12) 35%,
+      transparent 52%
+    );
+
+  opacity: .45;
 }
 
 .countdown-content {
@@ -755,23 +789,104 @@ body::before {
   color: #ffffff;
 }
 
+/* =========================================
+   CONTADOR — CAJA GLASS + BORDE DE LUZ
+========================================= */
+
 .countdown-box {
+  position: relative;
   width: 320px;
   max-width: 82%;
   padding: 18px 12px;
   border-radius: 15px;
-  background: rgba(255,255,255,.74);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255,255,255,.45);
-  box-shadow: 0 14px 35px rgba(0,0,0,.12);
+
+  /* Cristal oscuro transparente */
+  background: rgba(255,255,255,.08);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  /* Borde base muy sutil */
+  border: 1px solid rgba(255,255,255,.28);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.14),
+    0 10px 30px rgba(0,0,0,.20);
 
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 8px;
+
+  /* Necesario para el efecto de luz */
+  isolation: isolate;
 }
+/* =========================================
+   DESTELLO QUE RECORRE EL BORDE
+========================================= */
+
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.countdown-box::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 0deg,
+    transparent 300deg,
+    rgba(255,255,255,.15) 320deg,
+    rgba(255,255,255,.45) 340deg,
+    #ffffff 355deg,
+    #ffffff 360deg
+  );
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+  -webkit-mask-composite: xor;
+
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+  mask-composite: exclude;
+
+  filter:
+    drop-shadow(0 0 3px rgba(255,255,255,.95))
+    drop-shadow(0 0 8px rgba(255,255,255,.65))
+    drop-shadow(0 0 14px rgba(255,255,255,.30));
+
+  pointer-events: none;
+  z-index: 2;
+
+  animation: countdownBorderLight 7s linear infinite;
+}
+@keyframes countdownBorderLight {
+  from {
+    --border-angle: 0deg;
+  }
+
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+.countdown-box > * {
+  position: relative;
+  z-index: 3;
+}
+
+
 
 .count-item {
   width: 52px;
@@ -2218,4 +2333,434 @@ body::before {
   transition:
     opacity 0.7s ease,
     transform 0.7s ease;
+}
+
+/* =====================================================
+   AJUSTES FINALES - TIPOGRAFÍA, BLANCO Y NEGRO
+   ===================================================== */
+
+.guest-family {
+  font-size: 27px;
+  color: #111111;
+  font-weight: 600;
+}
+
+.guest-passes {
+  font-size: 21px;
+  color: #111111;
+  font-weight: 600;
+}
+
+.story-text p,
+.gift-text {
+  font-size: 19px;
+}
+
+.family-chapter p,
+.family-chapter span {
+  font-size: 20px;
+  color: #222222;
+}
+
+.family-chapter h2 {
+  color: #111111;
+  font-size: 41px;
+}
+
+.special-phrase {
+  font-size: 38px;
+  color: #222222;
+}
+
+.date-box h3 {
+  color: #222222;
+  font-size: 50px;
+}
+
+.date-box h2 {
+  color: #111111;
+  font-size: 120px;
+}
+
+.date-line {
+  background: #222222;
+}
+
+/* El contador ahora aparece inmediatamente debajo de la fecha */
+.date-chapter .countdown-chapter {
+  width: 100%;
+  margin: 30px auto 35px;
+  padding: 0;
+}
+
+.countdown-title {
+  color: #111111;
+  font-size: 16px;
+  letter-spacing: 5px;
+}
+
+.count-item span {
+  font-size: 29px;
+  color: #111111;
+}
+
+.count-item small {
+  font-size: 9px;
+  color: #222222;
+}
+
+.count-separator {
+  font-size: 28px;
+  color: #111111;
+}
+
+.countdown-phrase {
+  font-size: 32px;
+  color: #111111;
+}
+
+.gold-script-title {
+  color: #222222;
+  font-size: 48px;
+}
+
+.place-kicker {
+  color: #222222;
+  font-size: 12px;
+}
+
+.place-info h3 {
+  color: #222222;
+  font-size: 45px;
+}
+
+.place-info h4 {
+  color: #111111;
+  font-size: 22px;
+}
+
+.place-info p {
+  color: #222222;
+  font-size: 18px;
+}
+
+.place-info strong {
+  color: #111111;
+  font-size: 21px;
+}
+
+.purple-script-title {
+  color: #222222;
+  font-size: 51px;
+}
+
+.itinerary-date,
+.itinerary-item strong {
+  color: #111111;
+}
+
+.itinerary-date {
+  font-size: 21px;
+}
+
+.itinerary-item strong {
+  font-size: 17px;
+}
+
+.itinerary-item p {
+  color: #222222;
+  font-size: 15px;
+}
+
+.dresscode-chapter h3 {
+  color: #111111;
+  font-size: 18px;
+}
+
+.dresscode-chapter p {
+  color: #222222;
+  font-size: 18px;
+}
+
+.gift-text {
+  color: #222222;
+}
+
+.thanks-title {
+  color: #222222;
+  font-size: 45px;
+}
+
+.social-chapter h4 {
+  color: #111111;
+  font-size: 21px;
+}
+
+.share-photo-text strong {
+  color: #111111;
+}
+
+.rsvp-chapter .gift-text {
+  color: #222222;
+  font-size: 19px;
+}
+
+.rsvp-simple h2 {
+  color: #222222;
+  font-size: 50px;
+}
+
+.rsvp-simple label {
+  color: #111111;
+  font-size: 18px;
+}
+
+.rsvp-simple select {
+  color: #222222;
+  font-size: 17px;
+}
+
+.rsvp-important {
+  color: #222222;
+  font-size: 18px !important;
+}
+
+.rsvp-guest-data {
+  margin: 8px auto 20px;
+  padding: 13px 16px;
+  border: 1px solid rgba(80,80,80,.25);
+  border-radius: 14px;
+  background: rgba(255,255,255,.55);
+  text-align: left;
+}
+
+.rsvp-guest-data p {
+  margin: 5px 0;
+  color: #222222;
+  font-size: 17px;
+  line-height: 1.35;
+}
+
+.rsvp-guest-data span {
+  color: #111111;
+  font-weight: 600;
+}
+
+.rsvp-guest-data strong {
+  color: #111111;
+  font-weight: 700;
+}
+
+/* =========================================
+   BOTONES NEGROS + BRILLO LED ELEGANTE
+   ========================================= */
+
+.confirm-button,
+.modal-send-btn,
+.location-btn {
+  position: relative;
+  z-index: 0;
+  background: #111111;
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,.65);
+  box-shadow:
+    0 0 5px rgba(255,255,255,.38),
+    0 0 12px rgba(255,255,255,.20);
+  overflow: visible;
+  animation: elegantLedGlow 3.2s ease-in-out infinite;
+  transition:
+    background .35s ease,
+    border-color .35s ease,
+    box-shadow .35s ease,
+    transform .35s ease;
+}
+
+/* Halo blanco/plata alrededor del botón */
+.confirm-button::before,
+.modal-send-btn::before,
+.location-btn::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  z-index: -1;
+  border-radius: inherit;
+  background: rgba(255,255,255,.42);
+  filter: blur(7px);
+  opacity: .55;
+  animation: elegantLedHalo 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Pequeño reflejo que recorre el botón */
+.confirm-button::after,
+.modal-send-btn::after,
+.location-btn::after {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -55%;
+  width: 35%;
+  height: 120%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.55),
+    transparent
+  );
+  transform: skewX(-20deg);
+  opacity: 0;
+  pointer-events: none;
+  animation: buttonLightSweep 5s ease-in-out infinite;
+}
+
+/* El texto queda siempre por encima del reflejo */
+.confirm-button,
+.modal-send-btn,
+.location-btn {
+  isolation: isolate;
+}
+
+.confirm-button:hover,
+.modal-send-btn:hover,
+.location-btn:hover,
+.confirm-button:focus-visible,
+.modal-send-btn:focus-visible,
+.location-btn:focus-visible {
+  background: #000000;
+  color: #ffffff;
+  border-color: #ffffff;
+  box-shadow:
+    0 0 7px rgba(255,255,255,.90),
+    0 0 17px rgba(255,255,255,.52),
+    0 0 30px rgba(255,255,255,.22);
+  transform: translateY(-1px);
+}
+
+.confirm-button:hover::before,
+.modal-send-btn:hover::before,
+.location-btn:hover::before {
+  opacity: .9;
+}
+
+/* Respiración de la luz LED */
+@keyframes elegantLedGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 5px rgba(255,255,255,.30),
+      0 0 12px rgba(255,255,255,.16);
+  }
+
+  50% {
+    box-shadow:
+      0 0 7px rgba(255,255,255,.70),
+      0 0 18px rgba(255,255,255,.38),
+      0 0 28px rgba(255,255,255,.14);
+  }
+}
+
+@keyframes elegantLedHalo {
+  0%, 100% {
+    opacity: .35;
+    transform: scale(.99);
+  }
+
+  50% {
+    opacity: .72;
+    transform: scale(1.015);
+  }
+}
+
+/* Destello sutil cada cierto tiempo */
+@keyframes buttonLightSweep {
+  0%, 72% {
+    left: -55%;
+    opacity: 0;
+  }
+
+  78% {
+    opacity: .55;
+  }
+
+  88% {
+    left: 120%;
+    opacity: 0;
+  }
+
+  100% {
+    left: 120%;
+    opacity: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .guest-family {
+    font-size: 25px;
+  }
+
+  .guest-passes {
+    font-size: 20px;
+  }
+
+  .story-text p,
+  .gift-text {
+    font-size: 18px;
+  }
+
+  .date-box h3 {
+    font-size: 48px;
+  }
+
+  .date-box h2 {
+    font-size: 116px;
+  }
+
+  .rsvp-simple h2 {
+    font-size: 46px;
+  }
+
+  .rsvp-guest-data p {
+    font-size: 16px;
+  }
+}
+
+
+/* CONTADOR — OVERRIDE FINAL */
+ .countdown-title {
+  color: #ffffff;
+  font-size: 16px;
+  letter-spacing: 5px;
+  text-shadow: 0 0 12px rgba(255,255,255,.22);
+}
+
+.count-item span {
+  font-size: 29px;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255,255,255,.16);
+}
+
+.count-item small {
+  font-size: 9px;
+  color: rgba(255,255,255,.72);
+}
+
+.count-separator {
+  font-size: 28px;
+  color: rgba(255,255,255,.82);
+}
+
+.countdown-phrase {
+  font-size: 32px;
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(255,255,255,.20);
+}
+
+/* Ajuste móvil del contador glass */
+@media (max-width: 480px) {
+  .countdown-background {
+    min-height: 260px;
+  }
+
+  .countdown-box {
+    max-width: 86%;
+  }
 }
