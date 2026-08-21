@@ -1,6 +1,4 @@
-//* =====================================================
-   APERTURA DE LA INVITACIÓN
-   ===================================================== */
+//* =====================================================APERTURA DE LA INVITACIÓN ===================================================== */
 
 const envelopeScreen = document.getElementById("envelopeScreen");
 const mainPage = document.getElementById("mainPage");
