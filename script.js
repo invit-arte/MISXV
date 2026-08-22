@@ -364,7 +364,8 @@ const galleryPhotos = [
   "images/GALERIA6.jpeg",
   "images/GALERIA7.jpeg",
   "images/GALERIA8.jpeg",
-  "images/GALERIA9.jpeg"
+  "images/GALERIA9.jpeg",
+  "images/GALERIA10.jpeg"
 
 ];
 
